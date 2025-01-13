@@ -5,7 +5,7 @@ This project focuses on developing a Convolutional Neural Network (CNN) to class
 The dataset is organized into three main folders, each containing two subfolders (NORMAL and PNEUMONIA) for binary classification:
 
 1. Training Dataset:
-- Contains over 1,000 chest X-ray images per category.
+- Contains over 1,000+ chest X-ray images per category.
 - Data augmentation is applied to improve model generalization.
 2. Validation Dataset:
 - Includes 200 images per category.
@@ -14,6 +14,11 @@ The dataset is organized into three main folders, each containing two subfolders
 - Comprises 200 images per category.
 - Used to evaluate the final model's performance.
 All images are resized to 224 x 224 pixels for consistency with the CNN input layer.
+4. Dataset link:
+- The dataset was downloaded from the online Kaggle platform. I modified the dataset according to my preferences. The dataset size and images may change on Kaggle.
+```
+https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
+```
 ## Project Workflow
 The project follows a structured pipeline for model development:
 1. Data Preprocessing:
@@ -120,7 +125,7 @@ def predict(path):
     img = load_img(path, target_size=(224, 224, 3)) #import load_img, img_to_array using "from tensorflow.keras.preprocessing.image import load_img , img_to_array"
     img_arr = img_to_array(img)
     norm = img_arr / 255.0
-    flat = np.expand_dims(norm, axis=0)
+    flat = np.expand_dims(norm, axis=0) # import numpy as np
     pred = model.predict(flat)[0]
     return classes[np.argmax(pred)]
 ```
@@ -129,3 +134,25 @@ def predict(path):
 result = predict("path/to/image.jpg")
 print(f"The model predicts: {result}")
 ```
+# Repository Structure
+📂 Detecting-Pneumonia-in-Chest-XRays
+├── 📂 Data
+│   ├── 📂 train
+│   │   ├── 📂 NORMAL
+│   │   ├── 📂 PNEUMONIA
+│   ├── 📂 test
+│   │   ├── 📂 NORMAL
+│   │   ├── 📂 PNEUMONIA
+│   ├── 📂 validation
+│       ├── 📂 NORMAL
+│       ├── 📂 PNEUMONIA
+├── 📝 README.md
+├── 📄 project.ipynb
+├── 📄 test.ipynb
+├── 📄 Detecting Pneumonia in Chest X-Rays Classification with CNN Dump file.joblib
+## Key Features
+1. State-of-the-Art CNN Model: A well-designed architecture optimized for image classification.
+2. Data Augmentation: Enhanced the training dataset with augmentation techniques.
+3. Efficient Training: Utilized callbacks like early stopping and learning rate reduction.
+4. Simple Deployment: The model is saved in .joblib format for easy reuse and deployment.
+
