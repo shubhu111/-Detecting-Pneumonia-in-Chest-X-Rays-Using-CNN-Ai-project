@@ -18,15 +18,24 @@ All images are resized to 224 x 224 pixels for consistency with the CNN input la
 The project follows a structured pipeline for model development:
 1. Data Preprocessing:
 - The ImageDataGenerator class is used to:
-- Rescale pixel values to the range [0, 1].
-- Apply augmentation techniques like rotation, shear, width/height shift, zoom, and horizontal flips.
+   - Rescale pixel values to the range [0, 1].
+   - Apply augmentation techniques like rotation, shear, width/height shift, zoom, and horizontal flips.
 2. Model Architecture:
 - Input Layer: Resizes images to 224×224 with 3 channels (RGB).
 - Convolutional Layers:
    -  Extract spatial features using 2D convolution layers.
-Each convolutional layer is followed by ReLU activation and max-pooling.
-Fully Connected Layers:
-Flattens the feature map into a dense layer.
-Includes dropout layers to prevent overfitting.
-Output Layer:
-Uses a softmax activation function for binary classification (2 classes: NORMAL, PNEUMONIA).
+   - Each convolutional layer is followed by ReLU activation and max-pooling.
+- Fully Connected Layers:
+   - Flattens the feature map into a dense layer.
+   - Includes dropout layers to prevent overfitting.
+- Output Layer:
+   - Uses a softmax activation function for binary classification (2 classes: NORMAL, PNEUMONIA).
+3. Training:
+- Optimizer: Adam (adaptive learning rate optimization).
+- Loss Function: Categorical Crossentropy.
+- Evaluation Metrics: Accuracy and Loss.
+- Early stopping and learning rate reduction callbacks are used to enhance training efficiency.
+4. Model Evaluation:
+- The trained model is evaluated on the test set for metrics like accuracy, precision, recall, and F1-score.
+5. Model Saving:
+- The trained model is serialized and saved as "Detecting Pneumonia in Chest X-Rays Classification with CNN Dump file.joblib" for later use.
