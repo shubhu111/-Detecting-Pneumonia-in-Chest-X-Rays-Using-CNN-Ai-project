@@ -135,6 +135,7 @@ result = predict("path/to/image.jpg")
 print(f"The model predicts: {result}")
 ```
 # Repository Structure
+```
 📂 Detecting-Pneumonia-in-Chest-XRays
 ├── 📂 Data
 │   ├── 📂 train
@@ -150,6 +151,7 @@ print(f"The model predicts: {result}")
 ├── 📄 project.ipynb
 ├── 📄 test.ipynb
 ├── 📄 Detecting Pneumonia in Chest X-Rays Classification with CNN Dump file.joblib
+```
 ## Key Features
 1. State-of-the-Art CNN Model: A well-designed architecture optimized for image classification.
 2. Data Augmentation: Enhanced the training dataset with augmentation techniques.
