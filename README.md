@@ -39,3 +39,93 @@ The project follows a structured pipeline for model development:
 - The trained model is evaluated on the test set for metrics like accuracy, precision, recall, and F1-score.
 5. Model Saving:
 - The trained model is serialized and saved as "Detecting Pneumonia in Chest X-Rays Classification with CNN Dump file.joblib" for later use.
+
+# Project Architecture (Code Overview)
+1. Import Libraries:
+```
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+```
+2. Define Data Paths:
+```
+train_path = "path/to/train"
+test_path = "path/to/test"
+validation_path = "path/to/validation"
+```
+3. Data Augmentation:
+```
+train_gen = ImageDataGenerator(rescale=1.0/255, 
+                               rotation_range=20,
+                               shear_range=0.2,
+                               zoom_range=0.2,
+                               horizontal_flip=True)
+
+test_gen = ImageDataGenerator(rescale=1.0/255)
+val_gen = ImageDataGenerator(rescale=1.0/255)
+```
+4. Model Architecture:
+```
+model = Sequential([
+    Conv2D(32, (3, 3), activation='relu', input_shape=(224, 224, 3)),
+    MaxPooling2D(pool_size=(2, 2)),
+    Conv2D(64, (3, 3), activation='relu'),
+    MaxPooling2D(pool_size=(2, 2)),
+    Flatten(),
+    Dense(128, activation='relu'),
+    Dropout(0.5),
+    Dense(2, activation='softmax')  # Output layer for 2 classes
+])
+```
+5. Compile the Model:
+```
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+```
+6. Train the Model:
+```
+early_stop = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True) # Add by choice(optional) 
+reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=3, min_lr=0.0001) # Add by choice(optional) 
+
+history = model.fit(train_gen.flow_from_directory(train_path),
+                    validation_data=val_gen.flow_from_directory(validation_path),
+                    epochs=25,
+                    callbacks=[early_stop, reduce_lr])
+```
+7. Save the Model:
+```
+import joblib
+joblib.dump(model, "Detecting Pneumonia in Chest X-Rays Classification with CNN Dump file.joblib")
+```
+# How to Use the Model
+Follow these steps to use the trained model:
+
+1. Load the Model:
+```
+import joblib
+model = joblib.load("Detecting Pneumonia in Chest X-Rays Classification with CNN Dump file.joblib")
+```
+2. Define Classes:
+```
+classes = ['NORMAL', 'PNEUMONIA']
+```
+3. Predict Function
+```
+def predict(path):
+    img = load_img(path, target_size=(224, 224, 3)) #import load_img, img_to_array using "from tensorflow.keras.preprocessing.image import load_img , img_to_array"
+    img_arr = img_to_array(img)
+    norm = img_arr / 255.0
+    flat = np.expand_dims(norm, axis=0)
+    pred = model.predict(flat)[0]
+    return classes[np.argmax(pred)]
+```
+4. Test Prediction:
+```
+result = predict("path/to/image.jpg")
+print(f"The model predicts: {result}")
+```
