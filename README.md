@@ -158,4 +158,4 @@ print(f"The model predicts: {result}")
 3. Efficient Training: Utilized callbacks like early stopping and learning rate reduction.
 4. Simple Deployment: The model is saved in .joblib format for easy reuse and deployment.
 # Conclusion
-This project demonstrates how deep learning can be effectively applied in medical imaging to assist healthcare professionals in diagnosing Pneumonia. With an accuracy of 93.5%, the model provides reliable predictions, making it a valuable tool for preliminary screenings. Future work may include extending the model to multi-class classification or implementing it in real-time diagnostic tools.
+This project demonstrates how deep learning can be effectively applied in medical imaging to assist healthcare professionals in diagnosing Pneumonia. With an accuracy of 80%, the model provides reliable predictions, making it a valuable tool for preliminary screenings. Future work may include extending the model to multi-class classification or implementing it in real-time diagnostic tools.
