@@ -21,9 +21,9 @@ The project follows a structured pipeline for model development:
 - Rescale pixel values to the range [0, 1].
 - Apply augmentation techniques like rotation, shear, width/height shift, zoom, and horizontal flips.
 2. Model Architecture:
-- Input Layer: Resizes images to 224×224224×224 with 3 channels (RGB).
+- Input Layer: Resizes images to 224×224 with 3 channels (RGB).
 - Convolutional Layers:
-   -- Extract spatial features using 2D convolution layers.
+   -  Extract spatial features using 2D convolution layers.
 Each convolutional layer is followed by ReLU activation and max-pooling.
 Fully Connected Layers:
 Flattens the feature map into a dense layer.
