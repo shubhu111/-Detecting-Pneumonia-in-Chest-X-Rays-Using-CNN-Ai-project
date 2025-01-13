@@ -1,7 +1,7 @@
 # Detecting Pneumonia in Chest X-Rays Classification with CNN
-## Project Overview
+# Project Overview
 This project focuses on developing a Convolutional Neural Network (CNN) to classify chest X-ray images into two categories: Normal and Pneumonia. By leveraging deep learning techniques, this model aims to assist healthcare professionals in detecting Pneumonia more efficiently from chest radiographs.
-## Dataset Description
+# Dataset Description
 The dataset is organized into three main folders, each containing two subfolders (NORMAL and PNEUMONIA) for binary classification:
 
 1. Training Dataset:
@@ -152,9 +152,10 @@ print(f"The model predicts: {result}")
 ├── 📄 test.ipynb
 ├── 📄 Detecting Pneumonia in Chest X-Rays Classification with CNN Dump file.joblib
 ```
-## Key Features
+# Key Features
 1. State-of-the-Art CNN Model: A well-designed architecture optimized for image classification.
 2. Data Augmentation: Enhanced the training dataset with augmentation techniques.
 3. Efficient Training: Utilized callbacks like early stopping and learning rate reduction.
 4. Simple Deployment: The model is saved in .joblib format for easy reuse and deployment.
-
+# Conclusion
+This project demonstrates how deep learning can be effectively applied in medical imaging to assist healthcare professionals in diagnosing Pneumonia. With an accuracy of 93.5%, the model provides reliable predictions, making it a valuable tool for preliminary screenings. Future work may include extending the model to multi-class classification or implementing it in real-time diagnostic tools.
